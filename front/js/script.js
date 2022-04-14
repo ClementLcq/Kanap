@@ -18,36 +18,59 @@ fetch(url)
 
 
 //Fonctions
-// On crée une fonction qui ira chercher toutes les données et générer l'affichage dynamique des produits
+// On crée une fonction qui regroupe toutes les fonctiones par type de données
 const generateProducts = (products) => {
     for (let i = 0; i < products.length; i++) {
         // On déclare une constante pour les liens, on définit son href et on la définit comme enfant de l'élément items
-        const productLink = document.createElement('a');
-        productLink.setAttribute("href", `product.html?id=${products[i]._id}`)
-        items.appendChild(productLink)
+        const productLink2 = generateLink(products[i])
+        items.appendChild(productLink2)
 
         // On déclare une constante pour les article et on la définit comme enfant de l'élément productLink
-        const productArticle = document.createElement('article');
-        productLink.appendChild(productArticle)
+        const productArticle2 = generateArticle(products[i]);
+        productLink2.appendChild(productArticle2)
 
         // On déclare une constante pour les images, on lui attribue les liens, les textes alternatifs et on la définit comme enfant de l'élément productArticle
-        const productImage = document.createElement('img');
-        productImage.setAttribute("src", products[i].imageUrl);
-        productImage.setAttribute("alt", products[i].altTxt);
-        productArticle.appendChild(productImage)
-
+        const productImage2 = generateImage(products[i]);
+        productArticle2.appendChild(productImage2);
 
         //On déclare une constante pour les h3, on lui assigne la bonne class, le texte a récupérer et on la définit comme enfant de l'élément productArticle
-        const productName = document.createElement('h3');
-        productName.classList.add("productName");
-        productName.innerText = products[i].name;
-        productArticle.appendChild(productName)
-
+        const productName2 = generateName(products[i]);
+        productArticle2.appendChild(productName2)
 
         //On déclare une constante pour les h3, on lui assigne la bonne class, le texte a récupérer et on la définit comme enfant de l'élément productArticle
-        const productDescription = document.createElement('p');
-        productDescription.classList.add("productDescription");
-        productDescription.innerText = products[i].description;
-        productArticle.appendChild(productDescription)
+        const productDescription2 = generateDescription(products[i]);
+        productArticle2.appendChild(productDescription2)
     }
+}
+
+const generateLink = (products) => {
+    const productLink = document.createElement('a');
+    productLink.setAttribute("href", `product.html?id=${products._id}`)
+    return productLink
+}
+
+const generateArticle = () => {
+    const productArticle = document.createElement('article');
+    return productArticle
+}
+
+const generateImage = (products) => {
+    const productImage = document.createElement("img");
+    productImage.setAttribute("src", products.imageUrl);
+    productImage.setAttribute("alt", products.altTxt);
+    return productImage;
+};
+
+const generateName = (products) => {
+    const productName = document.createElement('h3');
+    productName.classList.add("productName");
+    productName.innerText = products.name;
+    return productName
+}
+
+const generateDescription = (products) => {
+    const productDescription = document.createElement('p');
+    productDescription.classList.add("productDescription");
+    productDescription.innerText = products.description;
+    return productDescription
 }
