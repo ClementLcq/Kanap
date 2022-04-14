@@ -18,42 +18,24 @@ fetch(url)
 
 
 //Fonctions
-// On crée une fonction qui regroupe toutes les fonctiones par type de données
-const generateProducts = (products) => {
-    for (let i = 0; i < products.length; i++) {
-        // On déclare une constante pour les liens, on définit son href et on la définit comme enfant de l'élément items
-        const productLink2 = generateLink(products[i])
-        items.appendChild(productLink2)
+// On commence par créer une fonction par type de données à récupérer.
+// Cela nous permettra par la suite de toutes les appeler dans une autre fonction. 
+// Ce procédé simplifie la maintenabilité permettant de vérifier plus simplement chaque fonction une à une
 
-        // On déclare une constante pour les article et on la définit comme enfant de l'élément productLink
-        const productArticle2 = generateArticle(products[i]);
-        productLink2.appendChild(productArticle2)
-
-        // On déclare une constante pour les images, on lui attribue les liens, les textes alternatifs et on la définit comme enfant de l'élément productArticle
-        const productImage2 = generateImage(products[i]);
-        productArticle2.appendChild(productImage2);
-
-        //On déclare une constante pour les h3, on lui assigne la bonne class, le texte a récupérer et on la définit comme enfant de l'élément productArticle
-        const productName2 = generateName(products[i]);
-        productArticle2.appendChild(productName2)
-
-        //On déclare une constante pour les h3, on lui assigne la bonne class, le texte a récupérer et on la définit comme enfant de l'élément productArticle
-        const productDescription2 = generateDescription(products[i]);
-        productArticle2.appendChild(productDescription2)
-    }
-}
-
+// On crée donc une fonction permettant de générer les liens auquels on attribue une url suivant son id
 const generateLink = (products) => {
     const productLink = document.createElement('a');
     productLink.setAttribute("href", `product.html?id=${products._id}`)
     return productLink
 }
 
+// On crée une fonction permettant de générer un élément article
 const generateArticle = () => {
     const productArticle = document.createElement('article');
     return productArticle
 }
 
+// On crée une fonction permettant de générer un élément image. On lui attribue le chemin pour trouver la bonne image ainsi que son texte alternatif
 const generateImage = (products) => {
     const productImage = document.createElement("img");
     productImage.setAttribute("src", products.imageUrl);
@@ -61,6 +43,7 @@ const generateImage = (products) => {
     return productImage;
 };
 
+// on crée une fonction permettant de générer un élément de type h3. On lui attribue la bonne class ainsi que le texte correspondant
 const generateName = (products) => {
     const productName = document.createElement('h3');
     productName.classList.add("productName");
@@ -68,9 +51,35 @@ const generateName = (products) => {
     return productName
 }
 
+// On crée une fonction permettant de générer un élément de type p. On lui attribue la bonne class ainsi que le texte correspondant
 const generateDescription = (products) => {
     const productDescription = document.createElement('p');
     productDescription.classList.add("productDescription");
     productDescription.innerText = products.description;
     return productDescription
+}
+
+// Enfin, on crée donc une fonction qui regroupe toutes les fonctiones par type de données
+const generateProducts = (products) => {
+    for (let i = 0; i < products.length; i++) {
+        // On déclare une constante pour les liens qui équivaut à la fonction qui les génère. On la place comme enfant de la constante items
+        const productLink2 = generateLink(products[i])
+        items.appendChild(productLink2)
+
+        // On déclare une constante pour les article qui équivaut à la fonction qui les génère et on la définit comme enfant de l'élément productLink2
+        const productArticle2 = generateArticle(products[i]);
+        productLink2.appendChild(productArticle2)
+
+        // On déclare une constante pour les images qui équivaut à la fonction qui les génère et on la définit comme enfant de l'élément productArticle2
+        const productImage2 = generateImage(products[i]);
+        productArticle2.appendChild(productImage2);
+
+        // On déclare une constante pour les éléments de type h3 qui équivaut à la fonction qui les génère et on la définit comme enfant de l'élément productArticle2
+        const productName2 = generateName(products[i]);
+        productArticle2.appendChild(productName2)
+
+        // On déclare une constante pour les éléments de type p qui équivaut à la fonction qui les génère et on la définit comme enfant de l'élément productArticle2
+        const productDescription2 = generateDescription(products[i]);
+        productArticle2.appendChild(productDescription2)
+    }
 }
