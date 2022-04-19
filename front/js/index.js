@@ -1,7 +1,7 @@
 //Variables
 //Pour simplifier la suite, on crée une constante url avec la valeur de l'url de l'API
 const url = "http://localhost:3000/api/products";
-// On récupère les éléments qui contiennent les produits et on lui assigne une constante items
+// On récupère les éléments qui contiennent les produits et on lui assigne une constante items qui les récupère par leur id
 const items = document.getElementById('items');
 
 // Requête
@@ -28,7 +28,6 @@ const generateLink = (products) => {
     productLink.setAttribute("href", `product.html?id=${products._id}`)
     return productLink
 }
-
 
 // On crée une fonction permettant de générer un élément article
 const generateArticle = () => {
@@ -60,7 +59,7 @@ const generateDescription = (products) => {
     return productDescription
 }
 
-// Enfin, on crée donc une fonction qui regroupe toutes les fonctiones par type de données
+// Enfin, on crée donc une fonction qui regroupe toutes les fonctiones par type de données, ces dernières sont au sein d'une boucle afin d'appliquer cela pour chaque "item" de la db
 const generateProducts = (products) => {
     for (let i = 0; i < products.length; i++) {
         // On déclare une constante pour les liens qui équivaut à la fonction qui les génère. On la place comme enfant de la constante items
