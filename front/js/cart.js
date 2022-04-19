@@ -1,30 +1,30 @@
-const saveBasket = (basket) => {
-    localStorage.setItem("basket", JSON.stringify(basket))
+const saveCart = (cart) => {
+    localStorage.setItem("cart", JSON.stringify(cart))
 }
 
-const getBasket = () => {
-    let basket = localStorage.getItem("basket")
-    if (basket == null) {
+const getCart = () => {
+    let cart = localStorage.getItem("cart")
+    if (cart == null) {
         return []
     } else {
-        return JSON.parse(basket)
+        return JSON.parse(cart)
     }
 }
 
-const addBasket = (product) => {
-    let basket = getBasket()
-    let foundProduct = basket.find(p => (p.id === product.id) && (p.color === product.color))
+const addCart = (product) => {
+    let cart = getCart()
+    let foundProduct = cart.find(p => (p.id === product.id) && (p.color === product.color))
     if (foundProduct != undefined) {
         foundProduct.quantity++;
     } else {
         product.quantity = 1
-        basket.push(product)
+        cart.push(product)
     }
-    saveBasket(basket)
+    saveCart(cart)
 }
 
-const removeFromBasket = (product) => {
-    let basket = getBasket()
-    basket = basket.filter(p => (p.id != product.id) && (p.color != product.color))
-    saveBasket(basket)
+const removeFromCart = (product) => {
+    let cart = getCart()
+    cart = cart.filter(p => (p.id != product.id) && (p.color != product.color))
+    saveCart(cart)
 }
