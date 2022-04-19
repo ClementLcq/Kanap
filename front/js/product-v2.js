@@ -1,5 +1,5 @@
 // Variables d'initialisation
-// On crée une constante qu'on équivaut
+// BLABLA
 const param = new URLSearchParams(window.location.search);
 let idProduct = param.get("id")
 console.log(idProduct)
@@ -22,13 +22,12 @@ fetch("http://localhost:3000/api/products/" + idProduct)
 // On va donc créer des fonctions nous permettant de récupérer chaque paramètre de cet id unique et de les afficher sur la page/insérer dans le DOM.
 // Comme sur la page index, on va d'abord créer une fonction par type de données puis une les regroupant, cela permettant une maintenabilité plus facile et efficace
 
-// On crée une fonction pour récupérer l'image correspondant à l'id du produit
-// On crée une fonction permettant de générer un élément image. On lui attribue le chemin pour trouver la bonne image ainsi que son texte alternatif
+// On crée une fonction pour modifier le title de la page par celui correspond au produit sélectionné
 const getTitle = (oneProduct) => {
     document.title = oneProduct.name
 }
 
-
+// Comme dans index.js, on crée plusieurs fonctions pour récupérér chaque paramètre
 const getImage = (oneProduct) => {
     const itemImage = document.createElement("img");
     document.querySelector(".item__img").appendChild(itemImage);
@@ -65,6 +64,7 @@ const getColor = (oneProduct) => {
     }
 }
 
+// Enfin on crée une fonction appelant toutes les autres
 const getProduct = (oneProduct) => {
     getTitle(oneProduct)
     getImage(oneProduct)

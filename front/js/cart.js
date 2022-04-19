@@ -28,3 +28,5 @@ const removeFromCart = (product) => {
     cart = cart.filter(p => (p.id != product.id) && (p.color != product.color))
     saveCart(cart)
 }
+
+// https://www.youtube.com/watch?v=vMT4NNFYno0&t=531s
