@@ -24,6 +24,11 @@ fetch("http://localhost:3000/api/products/" + idProduct)
 
 // On crée une fonction pour récupérer l'image correspondant à l'id du produit
 // On crée une fonction permettant de générer un élément image. On lui attribue le chemin pour trouver la bonne image ainsi que son texte alternatif
+const getTitle = (oneProduct) => {
+    document.title = oneProduct.name
+}
+
+
 const getImage = (oneProduct) => {
     const itemImage = document.createElement("img");
     document.querySelector(".item__img").appendChild(itemImage);
@@ -61,6 +66,7 @@ const getColor = (oneProduct) => {
 }
 
 const getProduct = (oneProduct) => {
+    getTitle(oneProduct)
     getImage(oneProduct)
     getName(oneProduct)
     getPrice(oneProduct)
