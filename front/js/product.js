@@ -62,7 +62,6 @@ const getColor = (oneProduct) => {
 const getProduct = (oneProduct) => {
     const getImage2 = getImage(oneProduct)
     document.querySelector(".item__img").appendChild(getImage2);
-
     getName(oneProduct)
     getPrice(oneProduct)
     getDescription(oneProduct)
