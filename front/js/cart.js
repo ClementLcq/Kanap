@@ -12,9 +12,9 @@ class Cart {
     }
 
     add(product) {
-        let foundProduct = this.cart.find(p => (p.id === product.id) && (p.color === product.color))
+        let foundProduct = this.cart.find(p => (p.userProductId === product.userProductId) && (p.userProductColor === product.userProductColor))
 
-        if (foundProduct != undefined) {
+        if (foundProduct) {
             foundProduct.quantity++;
         } else {
             product.quantity = 1

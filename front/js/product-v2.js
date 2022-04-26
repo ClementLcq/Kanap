@@ -72,6 +72,7 @@ const getProduct = (oneProduct) => {
     getPrice(oneProduct)
     getDescription(oneProduct)
     getColor(oneProduct)
+    addToCart(oneProduct)
 }
 
 
@@ -89,7 +90,7 @@ const addToCart = () => {
     addBouton.addEventListener("click", () => {
         // On va vérifier que les champs sont bien renseignés pour les stocker dans des variables
         if (color.value !== "" && quantity.value > 0 && quantity.value <= 100) {
-            let userProductId = productId;
+            let userProductId = idProduct;
             let userProductColor = color.value;
             let userProductQuantity = quantity.value;
 
@@ -102,6 +103,7 @@ const addToCart = () => {
             };
             let cart = new Cart()
             cart.add(userProductArray)
+            cart.save()
         }
 
     })
