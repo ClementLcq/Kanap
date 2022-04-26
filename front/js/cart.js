@@ -1,3 +1,4 @@
+//--------------------CLASS OBJECT FUNCTION---------
 // On crée un class objet qui réunira toutes les fonctions dont nous avons besoin concernant le panier
 class Cart {
     // On initialise l'objet à l'aide du constructor afin de récupérer le panier à chaque fois
@@ -28,10 +29,8 @@ class Cart {
         // Si il existe déjà on crée une variable de nouvelle quantité correspondante à l'addition de la quantité existante et de la valeur entrée
         // Sinon on définit par défaut une quantité correspondante à la valeur entrée   
         if (foundProduct) {
-            let newQuantity = parseInt(foundProduct.userProductQuantity) + parseInt(quantity.value)
-            foundProduct.userProductQuantity = newQuantity;
+            foundProduct.userProductQuantity += parseInt(product.userProductQuantity);
         } else {
-            product.userProductQuantity = parseInt(quantity.value)
             this.cart.push(product)
         }
         this.save()
@@ -49,7 +48,7 @@ class Cart {
     changeQuantity(product, quantity) {
         // On regarde si le produit est dans le panier
         let foundProduct = this.cart.find(p => (p.userProductId === product.userProductId) && (p.userProductColor === product.userProductColor))
-        if (foundProduct != undefined) {
+        if (foundProduct) {
             foundProduct.quantity += quantity
                 // On crée une condition si la valeur est en dessous de 0 car cela n'a pas de sens de vendre -x produits
                 // Si c'est le cas, on rappelle la fonction crée avant de suppression d'un produit du panier

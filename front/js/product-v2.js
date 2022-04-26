@@ -81,6 +81,7 @@ const getProduct = (oneProduct) => {
 
 const addToCart = () => {
     // On définit des constantes correspondants aux champs à renseigner
+    const name = document.querySelector("#title").innerHTML
     const addBouton = document.querySelector("#addToCart")
     const quantity = document.querySelector("#quantity")
     const color = document.querySelector("#colors")
@@ -93,7 +94,7 @@ const addToCart = () => {
         if (color.value !== "" && quantity.value > 0 && quantity.value <= 100) {
             let userProductId = idProduct;
             let userProductColor = color.value;
-            let userProductQuantity = quantity.value;
+            let userProductQuantity = parseInt(quantity.value);
 
 
             // Création d'un objet produit
