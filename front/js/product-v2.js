@@ -85,6 +85,7 @@ const addToCart = () => {
     const quantity = document.querySelector("#quantity")
     const color = document.querySelector("#colors")
 
+
     // On va maintenant écouter le click
 
     addBouton.addEventListener("click", () => {
@@ -93,6 +94,7 @@ const addToCart = () => {
             let userProductId = idProduct;
             let userProductColor = color.value;
             let userProductQuantity = quantity.value;
+
 
             // Création d'un objet produit
 
@@ -104,6 +106,11 @@ const addToCart = () => {
             let cart = new Cart()
             cart.add(userProductArray)
             cart.save()
+            alert("Votre produit a bien été ajouter au panier")
+
+
+        } else {
+            alert("Il semblerait que vous n'avez pas renseigné la couleur ou la quantité du produit")
         }
 
     })

@@ -2,6 +2,8 @@
 class Cart {
     // On initialise l'objet à l'aide du constructor afin de récupérer le panier à chaque fois
     constructor() {
+        // On enrengistre dans une variable ce que l'on récupère
+        // Et on regarde si le panier est vide ou non, on retourne un tableau vide si le panier n'existe pas et on retourne le JSON.parse du panier si il existe
         let cart = localStorage.getItem("cart")
         if (cart == null) {
             this.cart = []
@@ -29,7 +31,7 @@ class Cart {
             let newQuantity = parseInt(foundProduct.userProductQuantity) + parseInt(quantity.value)
             foundProduct.userProductQuantity = newQuantity;
         } else {
-            product.userProductQuantity = quantity.value
+            product.userProductQuantity = parseInt(quantity.value)
             this.cart.push(product)
         }
         this.save()
