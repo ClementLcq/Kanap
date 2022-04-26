@@ -15,9 +15,9 @@ class Cart {
         let foundProduct = this.cart.find(p => (p.userProductId === product.userProductId) && (p.userProductColor === product.userProductColor))
 
         if (foundProduct) {
-            foundProduct.quantity++;
+            foundProduct.userProductQuantity++;
         } else {
-            product.quantity = 1
+            product.userProductQuantity = 1
             this.cart.push(product)
         }
         this.save()
