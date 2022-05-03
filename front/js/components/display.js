@@ -12,7 +12,7 @@ class DisplayProducts {
             // et on crée une fonction qui va gérer la réponse au format json
             .then((data) => {
                 console.log(data)
-                return this.generateProducts()
+                return this.generateProducts(data)
             })
             // si la requête est mauvaise, on retourne un message d'erreur
             .catch((error) => {
@@ -25,7 +25,7 @@ class DisplayProducts {
         // On crée une constante parser correspondant à l'interface DOMParser qui permet d'analyser le code XML ou HTML d'un "string" dans le DOM
         const parser = new DOMParser();
         const items = document.getElementById('items');
-        for (let i = 0; i < this.products.length; i++) {
+        for (let i = 0; i < products.length; i++) {
             let productsItems = //On insère le HTML dans le DOM
                 `<a href="./product.html?id=${products[i]._id}"> 
                 <article>
