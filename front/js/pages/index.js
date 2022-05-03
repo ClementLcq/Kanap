@@ -1,3 +1,3 @@
-let displayProducts = new DisplayProducts
+let displayProducts = new DisplayProducts()
 displayProducts.getProducts()
 displayProducts.generateProducts()
