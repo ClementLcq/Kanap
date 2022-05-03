@@ -1,8 +1,6 @@
 class DisplayProducts {
 
-    constructor(products) {
-        this.products = products
-    }
+    constructor() {}
 
     getProducts() {
         const url = "http://localhost:3000/api/products";
