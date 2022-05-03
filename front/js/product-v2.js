@@ -99,13 +99,13 @@ const addToCart = () => {
 
             // Création d'un objet produit
 
-            let userProductArray = {
+            let userProductDatas = {
                 userProductId: userProductId,
                 userProductColor: userProductColor,
                 userProductQuantity: userProductQuantity,
             };
             let cart = new Cart()
-            cart.add(userProductArray)
+            cart.add(userProductDatas)
             cart.save()
             alert(`Votre produit a bien été ajouter au panier. Vous pouvez continuer vos achats ou vous rendre sur la page Panier pour finaliser votre commande`)
 
