@@ -1,7 +1,7 @@
 class DisplayProducts {
 
-    constructor() {
-
+    constructor(products) {
+        this.products = products
     }
 
     getProducts() {
@@ -20,18 +20,18 @@ class DisplayProducts {
             });
 
     }
-    generateProducts(products) {
+    generateProducts() {
 
         // On crée une constante parser correspondant à l'interface DOMParser qui permet d'analyser le code XML ou HTML d'un "string" dans le DOM
         const parser = new DOMParser();
         const items = document.getElementById('items');
         for (let i = 0; i < this.products.length; i++) {
             let productsItems = //On insère le HTML dans le DOM
-                `<a href="./product.html?id=${products[i]._id}"> 
+                `<a href="./product.html?id=${this.products[i]._id}"> 
                 <article>
-                <img src="${products[i].imageUrl}" alt="${products[i].altTxt}">
-                <h3 class="productName">${products[i].name}</h3>
-                <p class="productDescription">${products[i].description}</p>
+                <img src="${this.products[i].imageUrl}" alt="${this.products[i].altTxt}">
+                <h3 class="productName">${this.products[i].name}</h3>
+                <p class="productDescription">${this.products[i].description}</p>
                 </article>
                 </a>`;
             const displayItems = parser.parseFromString(productsItems, "text/html");
