@@ -7,7 +7,7 @@ class DisplayProducts {
         fetch(url)
             // si la requête est bonne, on retourne une réponse au format json
             .then((response) => response.json())
-            // et on crée une fonction qui va gérer la réponse au format json
+            // et on crée une fonction qui va gérer la réponse au format json et retourner la réponse de la fonction qui génère l'affichage dynamique des produits
             .then((data) => {
                 console.log(data)
                 return this.generateProducts(data)
