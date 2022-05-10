@@ -24,8 +24,15 @@ class DisplayCart {
                 document.querySelector("#cart__items").appendChild(cartItem);
                 cartItem.className = "cart__item";
                 cartItem.setAttribute('data-id', this.cart[product].userProductId);
-                //On insère l'image
 
+                //On insère l'image
+                let cartImg = document.createElement("div");
+                cartItem.appendChild(cartImg);
+                cartImg.className = "cart__item__img";
+                let itemImg = document.createElement("img");
+                cartImg.appendChild(itemImg);
+                itemImg.src = this.cart[product].userProductImage;
+                itemImg.alt = this.cart[product].altImgProduit;
             }
         }
 

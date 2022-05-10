@@ -1,4 +1,4 @@
-const addToCart = () => {
+const addToCart = (product) => {
     // On définit des constantes correspondants aux champs à renseigner
     const addBouton = document.querySelector("#addToCart")
     const quantity = document.querySelector("#quantity")
@@ -13,6 +13,7 @@ const addToCart = () => {
             let userProductId = idProduct;
             let userProductColor = color.value;
             let userProductQuantity = parseInt(quantity.value);
+            let userProductImage = product.imageUrl
 
 
             // Création d'un objet produit
@@ -21,6 +22,7 @@ const addToCart = () => {
                 userProductId: userProductId,
                 userProductColor: userProductColor,
                 userProductQuantity: userProductQuantity,
+                userProductImage: userProductImage,
             };
             let cart = new Cart()
             cart.add(userProductDatas)
