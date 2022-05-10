@@ -23,7 +23,7 @@ class DisplayCart {
                 let cartItem = document.createElement("article");
                 document.querySelector("#cart__items").appendChild(cartItem);
                 cartItem.className = "cart__item";
-                cartItem.setAttribute('data-id', this.cart[product].productId);
+                cartItem.setAttribute('data-id', this.cart[product].userProductId);
                 //On insère l'image
 
             }
