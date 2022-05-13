@@ -28,13 +28,13 @@ class DisplayCart {
                 cartItem.setAttribute('data-id', this.cart[product].userProductId);
 
                 //On insère l'image
-                let cartImg = document.createElement("div");
-                cartItem.appendChild(cartImg);
-                cartImg.className = "cart__item__img";
-                let itemImg = document.createElement("img");
-                cartImg.appendChild(itemImg);
-                itemImg.src = this.cart[product].userProductImage;
-                itemImg.alt = this.cart[product].altImgProduit;
+                let cartImage = document.createElement("div");
+                cartItem.appendChild(cartImage);
+                cartImage.className = "cart__item__img";
+                let itemImage = document.createElement("img");
+                cartImage.appendChild(itemImage);
+                itemImage.setAttribute("src", this.cart[product].imageUrl);
+                itemImage.setAttribute("alt", this.cart[product].altTxt);
             }
         }
 
