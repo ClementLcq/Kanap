@@ -15,6 +15,8 @@ class DisplayCart {
     displayCart = () => {
         let positionCart = document.querySelector("#cart__items");
         if (this.cart === null || this.cart == 0) { //On regarde si le panier est vide
+            //const emptyCart = document.createElement("p");
+            //document.querySelector("#cart__items").appendChild(emptyCart);
             const emptyCart = `<p>Votre panier est vide</p>`;
             positionCart.innerHTML = emptyCart;
         } else { //Si le panier est remplit, on met en place le contenu dynamique

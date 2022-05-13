@@ -13,7 +13,7 @@ const addToCart = (product) => {
             let userProductId = idProduct;
             let userProductColor = color.value;
             let userProductQuantity = parseInt(quantity.value);
-            let userProductImage = product.imageUrl
+            //let userProductImage = product.imageUrl
 
 
             // Création d'un objet produit
@@ -22,7 +22,7 @@ const addToCart = (product) => {
                 userProductId: userProductId,
                 userProductColor: userProductColor,
                 userProductQuantity: userProductQuantity,
-                userProductImage: userProductImage,
+                //userProductImage: userProductImage,
             };
             let cart = new Cart()
             cart.add(userProductDatas)
