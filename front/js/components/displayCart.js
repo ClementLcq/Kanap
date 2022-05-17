@@ -12,7 +12,7 @@ class DisplayCart {
 
     //On met en place le contenu dynamique
 
-    displayCart = () => {
+    generateCart = () => {
         let positionCart = document.querySelector("#cart__items");
         if (this.cart === null || this.cart == 0) { //On regarde si le panier est vide
             //const emptyCart = document.createElement("p");
@@ -27,6 +27,8 @@ class DisplayCart {
                 document.querySelector("#cart__items").appendChild(cartItem);
                 cartItem.className = "cart__item";
                 cartItem.setAttribute('data-id', product.userProductId);
+                cartItem.setAttribute('data-color', product.userProductColor);
+
 
                 //On insère l'image
                 let cartImage = document.createElement("div");
@@ -34,8 +36,10 @@ class DisplayCart {
                 cartImage.className = "cart__item__img";
                 let itemImage = document.createElement("img");
                 cartImage.appendChild(itemImage);
-                itemImage.setAttribute("src", product.imageUrl);
-                itemImage.setAttribute("alt", product.altTxt);
+                //itemImage.src = this.cart[product].userProductImage;
+                //itemImage.alt = this.cart[product].userProductAltImage;
+                itemImage.setAttribute("src", product.userProductImage);
+                itemImage.setAttribute("alt", product.userProductAltImage);
             })
         }
 
