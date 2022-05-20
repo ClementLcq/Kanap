@@ -22,16 +22,16 @@ class Service {
         })
     }
 
-    async getDatasCart() {
-        const datasCart = () => {
-            let cart = localStorage.getItem("cart")
-            if (cart == null) {
-                this.cart = []
-            } else {
-                this.cart = JSON.parse(cart)
-            }
+    getDatasCart() {
+
+        let cart = localStorage.getItem("cart")
+        if (cart == null) {
+            this.cart = []
+        } else {
+            this.cart = JSON.parse(cart)
         }
-        return await datasCart()
+
+        return this.cart
     }
 
 }
