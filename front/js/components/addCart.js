@@ -23,11 +23,7 @@ const addToCart = (product) => {
                 userProductId: userProductId,
                 userProductColor: userProductColor,
                 userProductQuantity: userProductQuantity,
-                userProductName: product.name,
-                userProductPrice: product.price,
-                userProductDescription: product.description,
-                userProductImage: product.imageUrl,
-                userProductAltImage: product.altTxt
+
             };
             let cart = new Cart()
             cart.add(userProductDatas)

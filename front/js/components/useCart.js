@@ -13,8 +13,12 @@ class Cart {
         }
     }
 
-    // On crée une fonction pour enregistrer le panier dans le localstorage (avec cart en paramètre pour lui signifier quel panier enregistrer)
-    // Le localstorage ne pouvant pas enregistrer des objets complexes, on sérialise les données qu'on va "parser" par la suite
+    getCart() {
+
+            return this.cart
+        }
+        // On crée une fonction pour enregistrer le panier dans le localstorage (avec cart en paramètre pour lui signifier quel panier enregistrer)
+        // Le localstorage ne pouvant pas enregistrer des objets complexes, on sérialise les données qu'on va "parser" par la suite
     save() {
         localStorage.setItem("cart", JSON.stringify(this.cart))
     }

@@ -7,11 +7,11 @@ class Service {
             .then((response) => response.json())
             // et on crée une fonction qui va gérer la réponse au format json
             .then((data) => {
-                if (idProduct != data._id) {
+                /*if (idProduct != data._id) {
                     //remplacer par un gros H3 présentant l'erreur
                     return { error: "id produit mauvais" }
                 }
-                console.log(data)
+                console.log(data)*/
                 return data
             })
 
@@ -33,5 +33,6 @@ class Service {
 
         return this.cart
     }
+
 
 }
