@@ -13,6 +13,8 @@ const addToCart = (product) => {
             let userProductId = idProduct;
             let userProductColor = color.value;
             let userProductQuantity = parseInt(quantity.value);
+            //let userProductName = product.name;
+            //let userProductPrice = product.price;
 
 
             // Création d'un objet produit

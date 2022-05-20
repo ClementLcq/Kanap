@@ -22,7 +22,7 @@ class Service {
         })
     }
 
-    /*async getDatasCart() {
+    async getDatasCart() {
         const datasCart = () => {
             let cart = localStorage.getItem("cart")
             if (cart == null) {
@@ -32,6 +32,6 @@ class Service {
             }
         }
         return await datasCart()
-    }*/
+    }
 
 }

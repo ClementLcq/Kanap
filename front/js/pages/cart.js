@@ -1,9 +1,9 @@
-/*let service = new Service()
+let service = new Service()
 service.getDatasCart().then(dataDetailProduct => {
     let getDisplayCart = new DisplayCart()
     getDisplayCart.generateCart(dataDetailProduct)
     console.log(getDisplayCart)
-})*/
+})
 
 
 
@@ -11,6 +11,6 @@ service.getDatasCart().then(dataDetailProduct => {
 
 
 
-let getDisplayCart = new DisplayCart()
+/*let getDisplayCart = new DisplayCart()
 getDisplayCart.generateCart()
-console.log(getDisplayCart)
+console.log(getDisplayCart)*/
