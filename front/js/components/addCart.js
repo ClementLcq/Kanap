@@ -1,4 +1,4 @@
-const addToCart = (product) => {
+const addToCart = () => {
     // On définit des constantes correspondants aux champs à renseigner
     const addBouton = document.querySelector("#addToCart")
     const quantity = document.querySelector("#quantity")
