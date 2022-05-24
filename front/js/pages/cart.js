@@ -21,12 +21,12 @@ if (userCart.length === 0) {
             //appeler le displayCart pour afficher le produit
             if (Object.keys(detailProduct).length != 0) {
                 getDisplayCart.generateDetailProductInCart(product.userProductColor, product.userProductQuantity, detailProduct)
-                removeToCart(detailProduct)
+                removeToCart(product.userProductColor, product.userProductId)
 
             } else {
                 getDisplayCart.generateErrorMessage(product)
             }
         })
-    });
+    })
 
 }
