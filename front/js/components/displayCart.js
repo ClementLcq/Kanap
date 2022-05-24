@@ -18,79 +18,32 @@ class DisplayCart {
         }
         //On met en place le contenu dynamique
     generateDetailProductInCart = (couleur, quantite, detailProduit) => {
+        const parser = new DOMParser();
         let positionCart = document.querySelector("#cart__items");
-        //On insère une balise article
-        let cartItem = document.createElement("article");
-        document.querySelector("#cart__items").appendChild(cartItem);
-        cartItem.className = "cart__item";
-        cartItem.setAttribute('data-id', detailProduit._id);
-        cartItem.setAttribute('data-color', couleur);
-
-
-        //On insère l'image
-        let cartImage = document.createElement("div");
-        cartItem.appendChild(cartImage);
-        cartImage.className = "cart__item__img";
-        let itemImage = document.createElement("img");
-        cartImage.appendChild(itemImage);
-        itemImage.setAttribute("src", detailProduit.imageUrl);
-        itemImage.setAttribute("alt", detailProduit.altTxt);
-
-        //On crée la div content
-        let cartContent = document.createElement("div");
-        cartItem.appendChild(cartContent);
-        cartContent.className = "cart__item__content";
-
-        //On insère la div du prix
-        let titlePrice = document.createElement("div");
-        cartContent.appendChild(titlePrice);
-        titlePrice.className = "cart__item__content__titlePrice";
-
-        //On insère le nom
-        let itemName = document.createElement("h2");
-        titlePrice.appendChild(itemName);
-        itemName.innerHTML = detailProduit.name;
-
-        //On insère le prix
-        let itemPrice = document.createElement("p");
-        titlePrice.appendChild(itemPrice);
-        itemPrice.innerHTML = detailProduit.price + " €";
-
-        //On insère la couleur
-        let itemColor = document.createElement("p");
-        itemName.appendChild(itemColor);
-        itemColor.innerHTML = couleur;
-
-        //On crée la div des réglages
-        let contentSet = document.createElement("div");
-        cartContent.appendChild(contentSet);
-        contentSet.className = "cart__item__content__settings";
-
-        //On règle et insère les quantités
-        let itemQuantities = document.createElement("div");
-        contentSet.appendChild(itemQuantities);
-        itemQuantities.className = "cart__item__content__settings__quantity";
-        let itemQuantity = document.createElement("p");
-        itemQuantities.appendChild(itemQuantity);
-        itemQuantity.innerHTML = "Quantité : ";
-        var productQuantity = document.createElement("input");
-        itemQuantities.appendChild(productQuantity);
-        productQuantity.value = quantite;
-        productQuantity.className = "itemQuantity";
-        productQuantity.setAttribute("type", "number");
-        productQuantity.setAttribute("min", "1");
-        productQuantity.setAttribute("max", "100");
-        productQuantity.setAttribute("name", "itemQuantity");
-
-        //Enfin, on insère le bouton supprimer
-        let itemDelete = document.createElement("div");
-        contentSet.appendChild(itemDelete);
-        itemDelete.className = "cart__item__content__settings__delete";
-        let buttonDelete = document.createElement("p");
-        itemDelete.appendChild(buttonDelete);
-        buttonDelete.className = "deleteItem";
-        buttonDelete.innerHTML = "Supprimer";
-
+        let detailProductItems = //On insère le HTML dans le DOM
+            `<article class="cart__item" data-id="${detailProduit._id}" data-color="${couleur}">
+            <div class="cart__item__img">
+              <img src="${detailProduit.imageUrl}" alt="${detailProduit.altTxt}">
+            </div>
+            <div class="cart__item__content">
+              <div class="cart__item__content__description">
+                <h2>${detailProduit.name}</h2>
+                <p>${couleur}</p>
+                <p>${detailProduit.price} €</p>
+              </div>
+              <div class="cart__item__content__settings">
+                <div class="cart__item__content__settings__quantity">
+                  <p>Qté : </p>
+                  <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${quantite}">
+                </div>
+                <div class="cart__item__content__settings__delete">
+                  <p class="deleteItem">Supprimer</p>
+                </div>
+              </div>
+            </div>
+          </article>`;
+        const displayDetailProductItems = parser.parseFromString(detailProductItems, "text/html");
+        positionCart.appendChild(displayDetailProductItems.body.firstChild);
     }
 
     generateErrorMessage = (product) => {
