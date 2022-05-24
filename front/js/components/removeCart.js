@@ -15,3 +15,21 @@ const removeToCart = (color, idProduct) => {
     })
 
 }
+
+//On va maintenant écouter le click
+/*for (let i = 0; i < deleteButton.length; i++) {
+    deleteButton[j].addEventListener("click", (e) => {
+        e.preventDefault()
+            //e.stopPropagation()
+        let deleteId = e.target.closest(".cart__item").getAttribute("data-id")
+        let deleteColor = e.target.closest(".cart__item").getAttribute("data-color")
+        cart.remove({
+            userProductId: deleteId,
+            userProductColor: deleteColor
+        })
+        cart.save()
+        alert(`Votre produit va être supprimé du panier`)
+        location.reload()
+
+    })
+}*/
