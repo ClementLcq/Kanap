@@ -1,11 +1,10 @@
 const modifyQuantityCart = () => {
-    const locationButton = document.querySelectorAll(".itemQuantity")
-        //const deleteButton = document.querySelectorAll(".deleteItem")
+    const itemQuantityButton = document.querySelectorAll(".itemQuantity")
     let cart = new Cart()
     cart.getCart()
 
-    for (let i = 0; i < locationButton.length; i++) {
-        locationButton[i].addEventListener("change", (e) => {
+    for (let i = 0; i < itemQuantityButton.length; i++) {
+        itemQuantityButton[i].addEventListener("change", (e) => {
             e.preventDefault()
                 //e.stopPropagation()
             let modifyQuantity = e.target.closest(".itemQuantity")
@@ -13,6 +12,8 @@ const modifyQuantityCart = () => {
             cart.changeQuantity(modifyQuantity)
             cart.save()
             alert(`Vous aller enlever un cxscxcdsf de votre produit`)
+            e.stopPropagation()
+            location.reload();
 
         })
     }
