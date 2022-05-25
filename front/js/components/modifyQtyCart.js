@@ -1,12 +1,13 @@
 const modifyQuantityCart = () => {
     const itemQuantityButton = document.querySelectorAll(".itemQuantity")
-    let cart = new Cart()
-    cart.getCart()
+
 
     for (let i = 0; i < itemQuantityButton.length; i++) {
         itemQuantityButton[i].addEventListener("change", (e) => {
             e.preventDefault()
                 //e.stopPropagation()
+            let cart = new Cart()
+            cart.getCart()
             let modifyQuantity = e.target.closest(".itemQuantity")
 
             cart.changeQuantity(modifyQuantity)

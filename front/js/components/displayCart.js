@@ -21,7 +21,7 @@ class DisplayCart {
         const parser = new DOMParser();
         let positionCart = document.querySelector("#cart__items");
         let detailProductItems = //On insère le HTML dans le DOM
-            `<article class="cart__item" data-id="${detailProduit._id}" data-color="${couleur}">
+            `<article id ="${detailProduit._id}" class="cart__item" data-id="${detailProduit._id}" data-color="${couleur}">
             <div class="cart__item__img">
               <img src="${detailProduit.imageUrl}" alt="${detailProduit.altTxt}">
             </div>
@@ -50,6 +50,14 @@ class DisplayCart {
         let positionCart = document.querySelector("#cart__items");
         const productUnknown = `<p>Le produit ${product.userProductId} de couleur ${product.userProductColor} n'existe plus et a été supprimé de votre panier</p>`;
         positionCart.innerHTML = productUnknown;
+    }
+
+    removeProductFromDom = (idProduct, cart) => {
+        const productToDelete = document.getElementById(idProduct);
+        productToDelete.remove()
+        if (cart.length === 0) {
+            this.generateEmptyCart()
+        }
     }
 
 
