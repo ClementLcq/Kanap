@@ -1,8 +1,11 @@
 const removeToCart = (color, idProduct) => {
-    const locationButton = document.querySelector(".cart__item[data-id='" + idProduct + "'][data-color='" + color + "']")
+    const deleteButton = document.querySelector(".cart__item[data-id='" + idProduct + "'][data-color='" + color + "'] .deleteItem")
         //const deleteButton = document.querySelectorAll(".deleteItem")
 
-    locationButton.addEventListener("click", (e) => {
+
+    //for (let i = 0; i < deleteButton.length; i++) {
+
+    deleteButton.addEventListener("click", (e) => {
         e.preventDefault()
         let cart = new Cart()
         cart.getCart()
@@ -16,6 +19,8 @@ const removeToCart = (color, idProduct) => {
 
         alert(`Votre produit va être supprimé du panier`)
     })
+
+    //}
 
 }
 

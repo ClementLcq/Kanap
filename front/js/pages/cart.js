@@ -22,7 +22,7 @@ if (userCart.length === 0) {
             if (Object.keys(detailProduct).length != 0) {
                 getDisplayCart.generateDetailProductInCart(product.userProductColor, product.userProductQuantity, detailProduct)
                 removeToCart(product.userProductColor, product.userProductId)
-                modifyQuantityCart(product.userProductQuantity)
+                    //modifyQuantityCart(product.userProductColor, product.userProductId)
 
 
             } else {
