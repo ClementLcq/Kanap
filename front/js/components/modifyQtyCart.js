@@ -1,5 +1,5 @@
-const modifyQuantityCart = (idProduct, color) => {
-    const itemQuantityButton = document.querySelector(".cart__item[data-id='" + idProduct + "'][data-color='" + color + "']")
+const modifyQuantityCart = (idProduct, color, quantity) => {
+    const itemQuantityButton = document.querySelector(".cart__item")
 
 
 
@@ -9,18 +9,21 @@ const modifyQuantityCart = (idProduct, color) => {
         cart.getCart()
         cart.changeQuantity({
             userProductId: idProduct,
-            userProductColor: color
+            userProductColor: color,
+            userProductQuantity: quantity
         })
-
-        /*e.preventDefault()
-            //e.stopPropagation()
-        let cart = new Cart()
-        cart.getCart()
         let modifyQuantity = e.target.closest(".itemQuantity")
 
-        cart.changeQuantity(modifyQuantity)*/
+        cart.changeQuantity(modifyQuantity)
+            /* e.preventDefault()
+                 //e.stopPropagation()
+             let cart = new Cart()
+             cart.getCart()
+             let modifyQuantity = e.target.closest(".itemQuantity")
+
+             cart.changeQuantity(modifyQuantity)*/
         cart.save()
-        alert(`Vous aller enlever un cxscxcdsf de votre produit`)
+        alert(`Attention, vous allez modifier la quantité de votre produit`)
         e.stopPropagation()
 
     })
