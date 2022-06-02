@@ -8,12 +8,10 @@ const removeToCart = (color, idProduct) => {
     deleteButton.addEventListener("click", (e) => {
         e.preventDefault()
         let cart = new Cart()
-        cart.getCart()
         cart.remove({
             userProductId: idProduct,
             userProductColor: color
         })
-        cart.save();
         let displayCart = new DisplayCart()
         displayCart.removeProductFromDom(idProduct, cart.getCart())
 

@@ -32,7 +32,7 @@ const addToCart = () => {
 
 
         } else {
-            alert("Il semblerait que vous n'avez pas renseigné la couleur ou la quantité du produit")
+            alert("Il vous choisir une couleur et une quantité comprise entre 1 et 100")
         }
 
     })

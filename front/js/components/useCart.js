@@ -49,18 +49,14 @@ class Cart {
     }
 
     // On crée une fonction pour modifier la quantité
-    changeQuantity(product, quantity) {
+    changeQuantity(idProduct, color, newQuantity) {
         // On regarde si le produit est dans le panier
-        let foundProduct = this.cart.find(p => (p.userProductId === product.userProductId) && (p.userProductColor === product.userProductColor))
+        let foundProduct = this.cart.find(p => (p.userProductId === idProduct) && (p.userProductColor === color))
         if (foundProduct) {
-            foundProduct.quantity += quantity
+            foundProduct.userProductQuantity = newQuantity
                 // On crée une condition si la valeur est en dessous de 0 car cela n'a pas de sens de vendre -x produits
                 // Si c'est le cas, on rappelle la fonction crée avant de suppression d'un produit du panier
-            if (foundProduct.quantity <= 0) {
-                this.remove(foundProduct)
-            } else {
-                this.save()
-            }
+            this.save()
         }
     }
 
