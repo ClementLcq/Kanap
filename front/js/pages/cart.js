@@ -12,7 +12,7 @@ if (userCart.length === 0) {
     userCart.forEach((product) => {
         service.getDetailProduct(product.userProductId).then(detailProduct => {
             //détails du produit récupérer
-            console.log(detailProduct)
+            console.table(detailProduct)
 
             //creer l'objet produit qui a toutes les infos nécessaires pour l'affichage
             //dans l'objet produit : id, couleur, quantité
@@ -23,6 +23,8 @@ if (userCart.length === 0) {
                 getDisplayCart.generateDetailProductInCart(product.userProductColor, product.userProductQuantity, detailProduct)
                 removeToCart(product.userProductColor, product.userProductId)
                 modifyQuantityCart(product.userProductId, product.userProductColor)
+                getTotalQuantity()
+                getTotalPrice(product)
 
 
             } else {
