@@ -16,6 +16,8 @@ const removeToCart = (color, idProduct) => {
         displayCart.removeProductFromDom(idProduct, cart.getCart())
 
         alert(`Votre produit va être supprimé du panier`)
+        getTotalQuantity()
+
     })
 
     //}

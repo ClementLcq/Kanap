@@ -6,7 +6,9 @@ const modifyQuantityCart = (idProduct, color) => {
         let cart = new Cart()
         let modifyQuantity = parseInt(e.target.closest(".itemQuantity").value)
         cart.changeQuantity(idProduct, color, modifyQuantity)
+        getTotalQuantity()
         e.stopPropagation()
+
 
     })
 

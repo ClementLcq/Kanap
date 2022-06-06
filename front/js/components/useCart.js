@@ -63,15 +63,17 @@ class Cart {
     getNumberProduct() {
         let number = 0
         for (let product of this.cart) {
-            number += product.quantity
+            number += product.userProductQuantity
         }
         return number
     }
 
-    getTotalPrice() {
+    getTotalPrice(product) {
+        let service = new Service()
+        service.getDetailProduct(product)
         let total = 0
-        for (let product of this.cart) {
-            total += product.quantity * product.price
+        for (let detailProduct of service) {
+            total += detailProduct.userProductQuantity * detailProduct.price
         }
         return total
     }
