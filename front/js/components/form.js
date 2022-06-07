@@ -6,7 +6,7 @@ const form = document.querySelector(".cart__order__form")
     // et on les déclaire de manière littérales pour des raisons de performances
     //Autre possibilité : appeler le constructeur RegExp
 let regex = /^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s]{3,}$/;
-let regexLocal = /^[-'a-zA-Z0-9À-ÖØ-öø-ÿ\s]{3,}$/;
+let regexLocalisation = /^[-'a-zA-Z0-9À-ÖØ-öø-ÿ\s]{3,}$/;
 let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 let validFirstName = false;
 let validLastName = false;
@@ -46,7 +46,7 @@ form.lastName.addEventListener('input', function() {
 });
 // Pour l'adresse
 form.address.addEventListener('input', function() {
-    let adressTest = regexLocal.test(this.value)
+    let adressTest = regexLocalisation.test(this.value)
     if (adressTest) {
         validAddress = true;
         this.nextElementSibling.innerHTML = "";
@@ -57,7 +57,7 @@ form.address.addEventListener('input', function() {
 });
 // Pour la ville
 form.city.addEventListener('input', function() {
-    let cityTest = regexLocal.test(this.value)
+    let cityTest = regexLocalisation.test(this.value)
     if (cityTest) {
         validCity = true;
         this.nextElementSibling.innerHTML = "";
@@ -130,7 +130,7 @@ const postForm = () => {
                         console.log("Erreur fetch" + err);
                     });
             } else {
-                alert("Attention, il semblerait que le formulaire ne soit pas renseigné.");
+                alert("Attention, il semblerait que le formulaire ne soit pas bien renseigné.");
             }
         } else {
             alert("Attention, il semblerait que votre panier soit vide. Veuillez sélectionner des articles et recommencer.");
