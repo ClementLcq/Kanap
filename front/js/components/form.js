@@ -1,3 +1,5 @@
+//On crée une constante pour récupérer les données du panier dans le LS
+const LOCALSTORAGE = JSON.parse(localStorage.getItem("cart"));
 //On commence par localiser le form dans le DOM
 const form = document.querySelector(".cart__order__form")
     // Puis on crée les variables qui nous seront nécessaires (comportant les classes de caractères / méta-caractères dont nous avons besoin) 
@@ -76,56 +78,63 @@ form.email.addEventListener('input', function() {
     }
 });
 
-//On crée maintenant une fonction pour valider le formulaire
-let goodForm = () => {
-    //On va vérifier nos booléans
-    if (validFirstName && validLastName && validAddress && validCity && validEmail) {
-        return true;
-    } else {
-        alert("Attention, il semble y avoir un problème dans vos coordonnées. Veuillez les renseigner correctement afin de pouvoir passer commande");
-        return false;
-    }
+//On crée maintenant une fonction qui va écouter le click du bouton de commande, 
+//vérifier le panier, 
+//vérifier les informations du form, 
+//et créer un objet contact qui sera envoyé dans le LS à l'aide la méthode POST
+const postForm = () => {
+    const orderButton = document.querySelector("#order");
+
+    //On écoute donc le boutton commander au click
+
+    orderButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        //On vérifie qu'il y a bien des produits dans le panier, si oui on crée un tableau vide et on utilise la méthode PUSH pour modifier le contenu du tableau dans l'API et y insérer les Ids
+        if (LOCALSTORAGE !== null) {
+            let orderProducts = [];
+            for (let i = 0; i < LOCALSTORAGE.length; i++) {
+                orderProducts.push(LOCALSTORAGE[i].userProductId);
+            }
+
+            // On construit donc l'objet contact en vérifiant d'abord la validité des inputs
+
+            if (validFirstName && validLastName && validAddress && validCity && validEmail) {
+                const orderUserProduct = {
+                    contact: {
+                        firstName: firstName,
+                        lastName: lastName,
+                        address: address,
+                        city: city,
+                        email: email,
+                    },
+                    products: orderProducts,
+                };
+
+                // Enfin on se sert de la méthode POST et ensuite on fetch pour communiquer avec l'API en demandant bien d'insérer l'Id de la commande dans l'URL
+
+                const post = {
+                    method: "POST",
+                    body: JSON.stringify(orderUserProduct),
+                    headers: {
+                        'Accept': "application/json",
+                        "Content-Type": "application/json",
+                    },
+                };
+                fetch("http://localhost:3000/api/products/order", post)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        // Ici on fait bien attention à envoyer l'id de la commande dans l'URL
+                        document.location.href = "confirmation.html?id=" + data.orderId;
+                    })
+                    .catch(function(err) {
+                        console.log("Erreur fetch" + err);
+                    });
+            } else {
+                alert("Attention, il semblerait que le formulaire ne soit pas renseigné.");
+            }
+        } else {
+            alert("Attention, il semblerait que votre panier soit vide. Veuillez sélectionner des articles et recommencer.");
+        }
+    });
 }
-
-
-// Constitution d'un objet contact + d'un tableau de produits
-//On commence par créer un objet qui va récupérer les données du client
-
-const clientOrder = {
-    contact: {
-        firstName: firstName,
-        lastName: lastName,
-        address: address,
-        city: city,
-        email: email
-    },
-    orderedProducts: []
-};
-
-//On va maintenant cibler le bouton pour commander et on va l'écouter au click
-//puis on va se servir de la methode POST qui permet de créer ou modifier une ressource au sein de l'API
-
-const orderButton = document.querySelector("#order")
-orderButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    //On vérifie si le formulaire est bon et on crée une constante post qui contient la méthode POST et qu'on appelera dans le fetch()
-    if (goodForm()) {
-        const post = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(order),
-        };
-        console.log(post)
-            // On appelle donc maintenant l'API (au niveau du router.post : order) pour lui envoyer l'objet créé
-        fetch("http://localhost:3000/api/products/order", post)
-            .then((res) => res.json())
-            .then(data => {
-                console.table(data);
-                localStorage.setItem("orderId", data.orderId);
-                document.location.href = `confirmation.html`;
-            });
-    };
-});
+postForm();
