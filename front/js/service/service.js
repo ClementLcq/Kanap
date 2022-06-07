@@ -34,20 +34,6 @@ class Service {
         return this.cart
     }
 
-    getDatasProducts() {
-        const url = "http://localhost:3000/api/products";
-        fetch(url)
-            // si la requête est bonne, on retourne une réponse au format json
-            .then((response) => response.json())
-            // et on crée une fonction qui va gérer la réponse au format json et retourner la réponse de la fonction qui génère l'affichage dynamique des produits
-            .then((data) => {
-                console.log(data)
-                return data
-            })
-            // si la requête est mauvaise, on retourne un message d'erreur
-            .catch((error) => {
-                console.log("Le chargement des produits a rencontré un problème :" + error);
-            });
-    }
+
 
 }

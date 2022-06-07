@@ -24,9 +24,7 @@ if (userCart.length === 0) {
                 removeToCart(product.userProductColor, product.userProductId)
                 modifyQuantityCart(product.userProductId, product.userProductColor)
                 getTotalQuantity()
-                getTotalPrice(product)
-
-
+                getTotalPrice()
             } else {
                 getDisplayCart.generateErrorMessage(product)
             }

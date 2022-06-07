@@ -68,12 +68,18 @@ class Cart {
         return number
     }
 
-    getTotalPrice() {
+    /*getTotalPrice() {
+        
         let total = 0
-        for (let detailProduct of this.cart) {
-            total += detailProduct.userProductQuantity * detailProduct.price
+        for (let cartProduct of this.cart) {
+            return await service.getDetailProduct(cartProduct.userProductId).then(detailProduct => {
+                total += cartProduct.userProductQuantity * detailProduct.price
+                console.log(total)
+
+            })
         }
         return total
-    }
+
+    }*/
 
 }

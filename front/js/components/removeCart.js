@@ -17,6 +17,7 @@ const removeToCart = (color, idProduct) => {
 
         alert(`Votre produit va être supprimé du panier`)
         getTotalQuantity()
+        getTotalPrice()
 
     })
 
