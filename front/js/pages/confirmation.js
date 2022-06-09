@@ -7,4 +7,3 @@ const userOrderId = document.querySelector('#orderId');
 userOrderId.textContent = productId;
 
 //Enfin, on supprime les données du panier afin de ne pas créer de conflit lors d'une future commande
-localStorage.clear()

@@ -1,5 +1,3 @@
-//On crée une constante pour récupérer les données du panier dans le LS
-const LOCALSTORAGE = JSON.parse(localStorage.getItem("cart"));
 //On commence par localiser le form dans le DOM
 const form = document.querySelector(".cart__order__form")
     // Puis on crée les variables qui nous seront nécessaires (comportant les classes de caractères / méta-caractères dont nous avons besoin) 
@@ -12,13 +10,32 @@ let validFirstName = false;
 let validLastName = false;
 let validAddress = false;
 let validCity = false;
-let validEmail = false;
+let validEmail = false; //a supprimer ensuite
 
-// FONCTIONS DE VALIDATIONS
-// On va maintenant créer les fonctions qui nous permettront de valider les input
-// On va utiliser la méthode test() qui va chercher les correspondances entre une chaine de cara et une expression singulière
-// elle va renvoyer un boolean true si au moins une correspondance trouvée, sinon false
-// ATTENTION : ne pas utiliser de fonction flêchées car ne possède pas ses propres valeurs pour this
+/* essai mentorat */
+let formFields = [{ name: "lastName", regexp: regex, valid: false, msgError: "Attention, veuillez renseigner correctement votre prénom. Il doit être écrit en toutes lettres et comporter un minimum de 3 caractères" },
+    { name: "email", regexp: emailRegex, valid: false }
+]
+
+formFields.forEach(field => {
+        form.get[field.name].addEventListener("input", function() {
+            let value = field.regexp.test(this.value);
+            /*if (value) {
+                field.valid = true;
+                this.nextElementSibling.innerHTML = ""
+            } else {
+                field.value = false;
+                this.nextElementSibling.innerHTML = field.msgError;
+            }*/
+            field.valid = value ? true : false;
+            this.nextElementSibling.innerHTML = valid ? "" : field.msgError;
+        })
+    })
+    // FONCTIONS DE VALIDATIONS
+    // On va maintenant créer les fonctions qui nous permettront de valider les input
+    // On va utiliser la méthode test() qui va chercher les correspondances entre une chaine de cara et une expression singulière
+    // elle va renvoyer un boolean true si au moins une correspondance trouvée, sinon false
+    // ATTENTION : ne pas utiliser de fonction flêchées car ne possède pas ses propres valeurs pour this
 
 //On commence par écouter l'input ciblé
 // Pour le prénom
@@ -89,11 +106,15 @@ const postForm = () => {
 
     orderButton.addEventListener("click", (e) => {
         e.preventDefault();
-        //On vérifie qu'il y a bien des produits dans le panier, si oui on crée un tableau vide et on utilise la méthode PUSH pour modifier le contenu du tableau dans l'API et y insérer les Ids
-        if (LOCALSTORAGE !== null) {
+        //On crée une constante pour récupérer les données du panier dans le LS
+        const cart = new Cart()
+        const actualCart = cart.getCart()
+            //const LOCALSTORAGE = JSON.parse(localStorage.getItem("cart"));
+            //On vérifie qu'il y a bien des produits dans le panier, si oui on crée un tableau vide et on utilise la méthode PUSH pour modifier le contenu du tableau dans l'API et y insérer les Ids
+        if (actualCart !== null) {
             let orderProducts = [];
-            for (let i = 0; i < LOCALSTORAGE.length; i++) {
-                orderProducts.push(LOCALSTORAGE[i].userProductId);
+            for (let i = 0; i < actualCart.length; i++) {
+                orderProducts.push(actualCart[i].userProductId);
             }
 
             // On construit donc l'objet contact en vérifiant d'abord la validité des inputs
@@ -125,9 +146,12 @@ const postForm = () => {
                     .then((data) => {
                         // Ici on fait bien attention à envoyer l'id de la commande dans l'URL
                         document.location.href = "confirmation.html?id=" + data.orderId;
+                        localStorage.clear()
+                            //Ajouter fonction de reset du formulaire
                     })
                     .catch(function(err) {
                         console.log("Erreur fetch" + err);
+                        alert("Il semblerait blablabla")
                     });
             } else {
                 alert("Attention, il semblerait que le formulaire ne soit pas bien renseigné.");
