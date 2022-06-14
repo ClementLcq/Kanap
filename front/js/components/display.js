@@ -1,7 +1,9 @@
+// Class to display products
 class DisplayProducts {
 
     constructor() {}
 
+    // function to get datas products with call to API
     getProducts() {
         const url = "http://localhost:3000/api/products";
         fetch(url)
@@ -18,9 +20,11 @@ class DisplayProducts {
             });
 
     }
+
+    // function to generate and display products in the DOM
     generateProducts(products) {
 
-        // On crée une constante parser correspondant à l'interface DOMParser qui permet d'analyser le code XML ou HTML d'un "string" dans le DOM
+        // Creation of const parser with DOMParser interface to analyze XML/HTML string in the DOM
         const parser = new DOMParser();
         const items = document.getElementById('items');
         for (let i = 0; i < products.length; i++) {

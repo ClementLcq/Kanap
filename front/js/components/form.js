@@ -19,42 +19,46 @@ formFields.forEach(field => {
         field.valid = value ? true : false;
         this.nextElementSibling.innerHTML = field.valid ? "" : field.msgError;
     })
-})
+});
 
-// Listen to the order click + cart verif + form verif + creation contact object and post
+// function to analyze, valid and submit form
 const postForm = () => {
     const orderForm = document.querySelector(".cart__order__form");
     orderForm.addEventListener("submit", (e) => {
 
         //get datas in the LS
-        const cart = new Cart()
-        const actualCart = cart.getCart()
+        const cart = new Cart();
+        const actualCart = cart.getCart();
 
-        // verif items in cart + empty array + push method
+        // return alert and false if the cart is empty
         if (actualCart.length == 0) {
-            e.preventDefault()
+            e.preventDefault();
             alert("Attention, il semblerait que votre panier soit vide. Veuillez sélectionner des articles et recommencer.");
-            return false
+            return false;
         }
 
+        // if not, creation of empty array + push method to modify/add the array content in the API
         let orderProducts = [];
         for (let i = 0; i < actualCart.length; i++) {
             orderProducts.push(actualCart[i].userProductId);
-        }
-        //console.log(formFields.every(Boolean))
+        };
+
+        // verification of the fields of the form
         let formValid = true;
         formFields.forEach(field => {
             if (field.valid == false) {
                 formValid = false
-            }
-        })
-        if (formValid == false) {
-            e.preventDefault()
-            alert("Attention, il semblerait que le formulaire ne soit pas bien renseigné.");
-            return false
-        }
-        // Creation contact object + verif input
+            };
+        });
 
+        // return alert and false if the form is incorrect
+        if (formValid == false) {
+            e.preventDefault();
+            alert("Attention, il semblerait que le formulaire ne soit pas bien renseigné.");
+            return false;
+        };
+
+        // if not, creation contact object with input values
         const orderUserProduct = {
             contact: {
                 firstName: e.target.querySelector("#firstName").value,
@@ -75,7 +79,7 @@ const postForm = () => {
                 "Content-Type": "application/json",
             },
         };
-        console.debug(post)
+
         fetch("http://localhost:3000/api/products/order", post)
             .then((res) => res.json())
             .then((data) => {
@@ -88,8 +92,6 @@ const postForm = () => {
                 console.log("Erreur fetch" + err);
                 alert("Il semblerait qu'il y ait un problème au niveau de notre API. Veuillez retenter ultérieurement.")
             });
-
-
     });
 }
 postForm();

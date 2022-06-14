@@ -1,10 +1,7 @@
-//--------------------CLASS OBJECT FUNCTION---------
-// On crée un class objet qui réunira toutes les fonctions dont nous avons besoin concernant le panier
+// Class to initialize several different functions for the shopping cart 
 class Cart {
-    // On initialise l'objet à l'aide du constructor afin de récupérer le panier à chaque fois
+    // Constructor to get the cart in the LS in JSON 
     constructor() {
-        // On enrengistre dans une variable ce que l'on récupère
-        // Et on regarde si le panier est vide ou non, on retourne un tableau vide si le panier n'existe pas et on retourne le JSON.parse du panier si il existe
         let cart = localStorage.getItem("cart")
         if (cart == null) {
             this.cart = []
@@ -13,73 +10,49 @@ class Cart {
         }
     }
 
+    // function to get the actual cart in LS
     getCart() {
+        return this.cart;
+    };
 
-            return this.cart
-        }
-        // On crée une fonction pour enregistrer le panier dans le localstorage (avec cart en paramètre pour lui signifier quel panier enregistrer)
-        // Le localstorage ne pouvant pas enregistrer des objets complexes, on sérialise les données qu'on va "parser" par la suite
+    // function to save the modify cart in the LS
     save() {
         localStorage.setItem("cart", JSON.stringify(this.cart))
     }
 
-    // On crée une fonction pour ajouter au panier
+    // function to add products in the cart then save
     add(product) {
-        // On regarde ensuite si le produit est déjà dans le panier, si oui on augmente sa quantité, sinon on ajoute le produit
-        // On utilise .find qui est une fonction permettant de chercher un élément sur un tableau par rapport à une condition
-        // Pour ce site, on regarde si un produit a la même id ET la même couleur
-        let foundProduct = this.cart.find(p => (p.userProductId === product.userProductId) && (p.userProductColor === product.userProductColor))
+        let foundProduct = this.cart.find(p => (p.userProductId === product.userProductId) && (p.userProductColor === product.userProductColor));
 
-        // Si il existe déjà on crée une variable de nouvelle quantité correspondante à l'addition de la quantité existante et de la valeur entrée
-        // Sinon on définit par défaut une quantité correspondante à la valeur entrée   
         if (foundProduct) {
             foundProduct.userProductQuantity += parseInt(product.userProductQuantity);
         } else {
-            this.cart.push(product)
+            this.cart.push(product);
         }
-        this.save()
-    }
+        this.save();
+    };
 
-    // On crée une fonction pour retirer un produit du panier
+    // function to remove a product of the cart then save
     remove(product) {
-        // On utilise la fonction .filter qui va filter un tableau suivant une condition
-        // Ici il va donc conserver que les produits qui n'ont pas ni le même id, ni la même couleur
-        this.cart = this.cart.filter(p => (p.userProductId != product.userProductId) || (p.userProductColor != product.userProductColor))
-        this.save()
-    }
+        this.cart = this.cart.filter(p => (p.userProductId != product.userProductId) || (p.userProductColor != product.userProductColor));
+        this.save();
+    };
 
-    // On crée une fonction pour modifier la quantité
+    // function to change the quantity of an item in the cart then save
     changeQuantity(idProduct, color, newQuantity) {
-        // On regarde si le produit est dans le panier
-        let foundProduct = this.cart.find(p => (p.userProductId === idProduct) && (p.userProductColor === color))
+        let foundProduct = this.cart.find(p => (p.userProductId === idProduct) && (p.userProductColor === color));
         if (foundProduct) {
-            foundProduct.userProductQuantity = newQuantity
-                // On crée une condition si la valeur est en dessous de 0 car cela n'a pas de sens de vendre -x produits
-                // Si c'est le cas, on rappelle la fonction crée avant de suppression d'un produit du panier
-            this.save()
-        }
-    }
+            foundProduct.userProductQuantity = newQuantity;
+            this.save();
+        };
+    };
 
+    // function to get the number of products in the cart
     getNumberProduct() {
         let number = 0
         for (let product of this.cart) {
-            number += product.userProductQuantity
+            number += product.userProductQuantity;
         }
-        return number
-    }
-
-    /*getTotalPrice() {
-        
-        let total = 0
-        for (let cartProduct of this.cart) {
-            return await service.getDetailProduct(cartProduct.userProductId).then(detailProduct => {
-                total += cartProduct.userProductQuantity * detailProduct.price
-                console.log(total)
-
-            })
-        }
-        return total
-
-    }*/
-
-}
+        return number;
+    };
+};

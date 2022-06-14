@@ -1,11 +1,10 @@
+// Function to add item to cart
 const addToCart = () => {
-    // On définit des constantes correspondants aux champs à renseigner
-    const addBouton = document.querySelector("#addToCart")
-    const quantity = document.querySelector("#quantity")
-    const color = document.querySelector("#colors")
+    const addBouton = document.querySelector("#addToCart");
+    const quantity = document.querySelector("#quantity");
+    const color = document.querySelector("#colors");
 
-
-    // On va maintenant écouter le click
+    // Listen to the click
 
     addBouton.addEventListener("click", () => {
         // On va vérifier que les champs sont bien renseignés pour les stocker dans des variables
@@ -13,18 +12,15 @@ const addToCart = () => {
             let userProductId = idProduct;
             let userProductColor = color.value;
             let userProductQuantity = parseInt(quantity.value);
-            //let userProductName = product.name;
-            //let userProductPrice = product.price;
 
-
-            // Création d'un objet produit
-
+            // Creation of product object
             let userProductDatas = {
                 userProductId: userProductId,
                 userProductColor: userProductColor,
                 userProductQuantity: userProductQuantity,
 
             };
+            // Use of Cart class to add products in cart and save
             let cart = new Cart()
             cart.add(userProductDatas)
             cart.save()
