@@ -1,39 +1,35 @@
+// Service class to get detail of products and datas of cart
 class Service {
     constructor() {}
-        //on fait un appel async pour pouvoir retourner le fetch par la suite
+
+    //Async function with await keyword with fetch to return a promise to call the API and get details of the good product with his id
     async getDetailProduct(idProduct) {
         return await fetch("http://localhost:3000/api/products/" + idProduct)
-            // si la requête est bonne, on retourne une réponse au format json
             .then((response) => response.json())
-            // et on crée une fonction qui va gérer la réponse au format json
             .then((data) => {
-                /*if (idProduct != data._id) {
-                    //remplacer par un gros H3 présentant l'erreur
-                    return { error: "id produit mauvais" }
-                }
-                console.log(data)*/
                 return data
             })
 
-        // si la requête est mauvaise, on retourne un message d'erreur
+        // error management 
         .catch((error) => {
             console.log("Le chargement des produits a rencontré un problème :" + error);
             return { error: "Le chargement des produits a rencontré un problème" };
         })
     }
 
+    // function to get datas cart in the LS
     getDatasCart() {
 
-        let cart = localStorage.getItem("cart")
+        let cart = localStorage.getItem("cart");
         if (cart == null) {
             this.cart = []
         } else {
             this.cart = JSON.parse(cart)
-        }
+        };
 
-        return this.cart
-    }
+        return this.cart;
+    };
 
 
 
-}
+};
