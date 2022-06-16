@@ -28,7 +28,7 @@ class DisplayProducts {
         const parser = new DOMParser();
         const items = document.getElementById('items');
         for (let i = 0; i < products.length; i++) {
-            let productsItems = //On insère le HTML dans le DOM
+            let productsItems = //We insert the HTML in the DOM
                 `<a href="./product.html?id=${products[i]._id}"> 
                 <article>
                 <img src="${products[i].imageUrl}" alt="${products[i].altTxt}">
