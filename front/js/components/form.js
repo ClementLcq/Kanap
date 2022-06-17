@@ -75,18 +75,19 @@ const postForm = () => {
             method: "POST",
             body: JSON.stringify(orderUserProduct),
             headers: {
-                'Accept': "application/json",
-                "Content-Type": "application/json",
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
             },
         };
 
         fetch("http://localhost:3000/api/products/order", post)
             .then((res) => res.json())
             .then((data) => {
-                document.location.href = "confirmation.html?id=" + data.orderId;
                 // Clear LS and fields form
                 localStorage.clear()
                 document.querySelector(".cart__order__form").reset();
+                document.location.href = "confirmation.html?id=" + data.orderId;
+
             })
             .catch(function(err) {
                 console.log("Erreur fetch" + err);

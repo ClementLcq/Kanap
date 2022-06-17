@@ -12,11 +12,14 @@ const getTotalPrice = () => {
     let service = new Service()
     let cart = service.getDatasCart()
     let total = 0
-    for (let cartProduct of cart) {
-        service.getDetailProduct(cartProduct.userProductId).then(detailProduct => {
-            total += cartProduct.userProductQuantity * detailProduct.price
-            totalPrice.innerHTML = total
-
-        })
+    if (cart.length == 0) {
+        totalPrice.innerHTML = 0
+    } else {
+        for (let cartProduct of cart) {
+            service.getDetailProduct(cartProduct.userProductId).then(detailProduct => {
+                total += cartProduct.userProductQuantity * detailProduct.price
+                totalPrice.innerHTML = total
+            })
+        }
     }
 }

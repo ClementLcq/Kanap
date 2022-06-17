@@ -7,6 +7,9 @@ let getDisplayCart = new DisplayCart();
 if (userCart.length === 0) {
     // call to the empty cart function
     getDisplayCart.generateEmptyCart();
+    getTotalQuantity();
+    getTotalPrice();
+
 } else {
     // forEach method to callback every elements of the array
     userCart.forEach((product) => {
