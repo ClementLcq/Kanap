@@ -17,19 +17,4 @@ class Service {
         })
     }
 
-    // function to get datas cart in the LS
-    getDatasCart() {
-
-        let cart = localStorage.getItem("cart");
-        if (cart == null) {
-            this.cart = []
-        } else {
-            this.cart = JSON.parse(cart)
-        };
-
-        return this.cart;
-    };
-
-
-
 };

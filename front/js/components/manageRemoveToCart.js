@@ -1,5 +1,5 @@
 // function to remove an item in the cart and update the DOM, the total quantity and the total price
-const removeToCart = (color, idProduct) => {
+const manageRemoveToCart = (color, idProduct) => {
     const deleteButton = document.querySelector(".cart__item[data-id='" + idProduct + "'][data-color='" + color + "'] .deleteItem");
 
     deleteButton.addEventListener("click", (e) => {
@@ -13,8 +13,8 @@ const removeToCart = (color, idProduct) => {
         displayCart.removeProductFromDom(idProduct, cart.getCart())
 
         alert(`Votre produit va être supprimé du panier`)
-        getTotalQuantity()
-        getTotalPrice()
+        handleTotalQuantity()
+        handleTotalPrice()
 
     })
 }

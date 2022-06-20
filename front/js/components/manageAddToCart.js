@@ -1,5 +1,5 @@
 // Function to add item to cart
-const addToCart = () => {
+const manageAddToCart = () => {
     const addBouton = document.querySelector("#addToCart");
     const quantity = document.querySelector("#quantity");
     const color = document.querySelector("#colors");

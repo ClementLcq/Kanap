@@ -15,6 +15,6 @@ service.getDetailProduct(idProduct).then(dataDetailProduct => {
     // if not, call to the DetailProduct class to generate and display details product's
     let detailProduct = new DetailProduct()
     detailProduct.generateDetailsProduct(dataDetailProduct)
-    addToCart(dataDetailProduct)
+    manageAddToCart(dataDetailProduct)
 
 })

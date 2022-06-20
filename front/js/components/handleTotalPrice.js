@@ -1,16 +1,9 @@
-// function to get the total quantity of all items in the cart
-const getTotalQuantity = () => {
-    let cart = new Cart()
-        //On va d'abord récupérer et afficher le nombre total de produits
-    const totalQuantity = document.querySelector('#totalQuantity')
-    totalQuantity.innerHTML = cart.getNumberProduct()
-}
-
 // function to get the total price of all items in the cart
-const getTotalPrice = () => {
+const handleTotalPrice = () => {
     const totalPrice = document.querySelector('#totalPrice')
     let service = new Service()
-    let cart = service.getDatasCart()
+    let actualCart = new Cart()
+    let cart = actualCart.getCart()
     let total = 0
     if (cart.length == 0) {
         totalPrice.innerHTML = 0

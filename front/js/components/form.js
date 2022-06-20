@@ -37,12 +37,6 @@ const postForm = () => {
             return false;
         }
 
-        // if not, creation of empty array + push method to modify/add the array content in the API
-        let orderProducts = [];
-        for (let i = 0; i < actualCart.length; i++) {
-            orderProducts.push(actualCart[i].userProductId);
-        };
-
         // verification of the fields of the form
         let formValid = true;
         formFields.forEach(field => {
@@ -56,6 +50,17 @@ const postForm = () => {
             e.preventDefault();
             alert("Attention, il semblerait que le formulaire ne soit pas bien renseigné.");
             return false;
+        };
+
+        // if not, creation of empty array + push method to modify/add the array content in the API
+        let orderProducts = [];
+        for (let i = 0; i < actualCart.length; i++) {
+            if (actualCart[i].userProductQuantity < 0 || actualCart[i].userProductQuantity > 100) {
+                formValid = false;
+                alert("Attention, vous devez renseigner une quantité entre 1 et 100");
+                return false;
+            }
+            orderProducts.push(actualCart[i].userProductId);
         };
 
         // if not, creation contact object with input values

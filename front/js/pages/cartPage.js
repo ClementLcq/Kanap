@@ -7,8 +7,8 @@ let getDisplayCart = new DisplayCart();
 if (userCart.length === 0) {
     // call to the empty cart function
     getDisplayCart.generateEmptyCart();
-    getTotalQuantity();
-    getTotalPrice();
+    handleTotalQuantity();
+    handleTotalPrice();
 
 } else {
     // forEach method to callback every elements of the array
@@ -18,10 +18,10 @@ if (userCart.length === 0) {
             // verify if properties of object are in and functions to display / remove / modify quantity / get total quantity and get total price
             if (Object.keys(detailProduct).length != 0) {
                 getDisplayCart.generateDetailProductInCart(product.userProductColor, product.userProductQuantity, detailProduct)
-                removeToCart(product.userProductColor, product.userProductId)
-                modifyQuantityCart(product.userProductId, product.userProductColor)
-                getTotalQuantity()
-                getTotalPrice()
+                manageRemoveToCart(product.userProductColor, product.userProductId)
+                manageModifyQuantityCart(product.userProductId, product.userProductColor)
+                handleTotalQuantity()
+                handleTotalPrice()
             } else {
                 getDisplayCart.generateErrorMessage(product)
             }
