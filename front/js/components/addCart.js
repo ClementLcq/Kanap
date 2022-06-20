@@ -7,7 +7,7 @@ const addToCart = () => {
     // Listen to the click
 
     addBouton.addEventListener("click", () => {
-        // On va vérifier que les champs sont bien renseignés pour les stocker dans des variables
+        // Verification if the fields are good
         if (color.value !== "" && quantity.value > 0 && quantity.value <= 100) {
             let userProductId = idProduct;
             let userProductColor = color.value;

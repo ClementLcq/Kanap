@@ -7,14 +7,14 @@ class DisplayProducts {
     getProducts() {
         const url = "http://localhost:3000/api/products";
         fetch(url)
-            // si la requête est bonne, on retourne une réponse au format json
+            // if good, return response in json
             .then((response) => response.json())
-            // et on crée une fonction qui va gérer la réponse au format json et retourner la réponse de la fonction qui génère l'affichage dynamique des produits
+            // and create function to manage the response and return the display function
             .then((data) => {
                 console.log(data)
                 return this.generateProducts(data)
             })
-            // si la requête est mauvaise, on retourne un message d'erreur
+            // if bad request, error msg
             .catch((error) => {
                 console.log("Le chargement des produits a rencontré un problème :" + error);
             });
